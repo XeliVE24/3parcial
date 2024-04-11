@@ -25,7 +25,6 @@ archivo = input("¿Cuál es el nombre del archivo a procesar? ")
 print("\033[34m Contenido del Archivo Excel :\033[0m")
 wb = load_workbook(archivo)
 for sheet in wb.sheetnames:
-    print(f"\nHoja: {sheet}")
     hoja = wb[sheet]
     for row in hoja.iter_rows(values_only=True):
         print("\t".join(str(cell) for cell in row))

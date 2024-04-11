@@ -8,12 +8,18 @@ def getMatriz(archivo):
     filas = hoja.max_row
     columnas = hoja.max_column
 
-    # Imprimir los datos de la hoja de cálculo
-    for row in range(1, filas + 1):
-        for col in range(1,columnas + 1):
-            cell_value = hoja.cell(row=row, column=col).value
-            print(cell_value, end='\t')  
-        print()  
+    dicc_relaciones = {}  # Diccionario para almacenar las relaciones
+
+    for row in range(2, filas + 1):  # Empezamos desde la segunda fila ya que la primera fila contiene los nombres de los nodos
+        nodo = hoja.cell(row=row, column=1).value
+        dicc_relaciones[nodo] = {}  
+        for col in range(2, columnas + 1):  # Empezamos desde la segunda columna ya que la primera columna contiene los nombres de los nodos
+            peso = hoja.cell(row=row, column=col).value
+            relacion = hoja.cell(row=1, column=col).value  
+            if relacion is not None and peso != 0:  #  peso es distinto de cero
+                dicc_relaciones[nodo][relacion] = peso
+
+    return dicc_relaciones
 
 def printDicc(dicc):
     for i in dicc:
