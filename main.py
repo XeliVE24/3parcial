@@ -15,8 +15,8 @@ for hoja in wb.sheetnames:
 
 #  lista de relaciones
 print("\n\033[34m lista relaciones :\033[0m")
-matriz_adyacente = getMatriz(archivo)
-for nodo, relaciones in matriz_adyacente.items():
+listarel= getMatriz(archivo)
+for nodo, relaciones in listarel.items():
     relaciones_str = " ".join([f"[{relacion}] : {peso} ->" for relacion, peso in relaciones.items()]) 
     print(f"Nodo {nodo} -> {relaciones_str}")
 
