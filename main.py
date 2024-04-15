@@ -17,7 +17,7 @@ for hoja in wb.sheetnames:
 print("\n\033[34m lista relaciones :\033[0m")
 matriz_adyacente = getMatriz(archivo)
 for nodo, relaciones in matriz_adyacente.items():
-    relaciones_str = " ".join([f"[{nodo}] : {peso} ->" for relacion, peso in relaciones.items()]) 
+    relaciones_str = " ".join([f"[{relacion}] : {peso} ->" for relacion, peso in relaciones.items()]) 
     print(f"Nodo {nodo} -> {relaciones_str}")
 
 
@@ -43,7 +43,7 @@ print(visitados)
 verticeAct = 'B'
 visitados.append(verticeAct)
 llaves = grafoTest.Aristas[verticeAct].keys()
-print(f"\033[34m visitados\033[0m  {llaves}")
+
 for i in llaves:
     if i not in visitados:
         if i not in path: path[i]={}
@@ -61,3 +61,4 @@ for i in llaves:
 
 print(f"\033[34m path: \033[0m  {path}")
 print("\033[34m cola:[#falta ]\033[0m")
+print(f"\033[34m visitados\033[0m  {llaves}")

@@ -45,7 +45,7 @@ class Grafo:
         for i in dicc:
             result += f'nodo: {i}\n'
             for j in dicc[i]:
-                result += f'\tRel:{j},peso:{dicc[i][j]}\n'
+                result += f'\tDestino:{j},peso:{dicc[i][j]}\n'
         return result
 
 
