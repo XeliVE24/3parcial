@@ -39,22 +39,18 @@ while verticeAct != destinoG:
 
     for i in llaves:
         if i not in visitados:
-            if i not in path: path[i]={}
+            if i not in path:
+                path[i] = {}
+            
+            # Calcula la nueva acumulación
             llave = list(path[verticeAct].keys())
             acumulado = path[verticeAct][llave[0]]
             if grafoTest.Aristas[verticeAct][i] != 0:
-                    acumulado = path[verticeAct][llave[0]]
-                    path[i].update({verticeAct: grafoTest.Aristas[verticeAct][i] + acumulado})
+                nueva_acumulacion = grafoTest.Aristas[verticeAct][i] + acumulado
+                if i not in path or nueva_acumulacion < path[i].get(verticeAct, float('inf')):
+                    path[i][verticeAct] = nueva_acumulacion
 
-        
-
-            if len(path[i]) == 2:
-                kiss = list(path[i].keys())
-                if kiss[0] > kiss[1]:
-                    del(path[i][kiss[0]])
-                elif kiss[0] < kiss[1]:
-                    del(path[i][kiss[1]])
-                pass
+            
 
     min_peso = float('inf')
     for nodo, pesos in path.items():
@@ -63,14 +59,15 @@ while verticeAct != destinoG:
                 if p < min_peso:
                     min_peso = p
                     verticeAct = nodo
- 
-# Reconstruir el camino más corto
+
 camino_mas_corto = [destinoG]
 vertice_actual = destinoG
+peso_total = 0  
 while vertice_actual != origenG:
     for v, p in path[vertice_actual].items():
         if p == min_peso:
             camino_mas_corto.append(v)
+            peso_total += grafoTest.Aristas[v][vertice_actual]  # Sumamos el peso de la arista al peso total
             min_peso -= grafoTest.Aristas[v][vertice_actual]
             vertice_actual = v
             break
@@ -79,4 +76,4 @@ camino_mas_corto.reverse()
 print(f"\033[34m path:\033[0m{path}")
 print(f"\033[34m visitados:\033[0m {visitados}")
 print(f"\033[34m El camino más corto es:\033[0m", camino_mas_corto)
-print("\033[34m El peso del camino más corto es:\033[0m",path[destinoG])
+print(f"\033[34m Peso total : \033[0m {peso_total}")
