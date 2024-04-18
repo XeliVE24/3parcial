@@ -28,6 +28,3 @@ class Grafo:
                 result += f'\tDestino:{j},peso:{dicc[i][j]}\n'
         return result
 
-
-
-
